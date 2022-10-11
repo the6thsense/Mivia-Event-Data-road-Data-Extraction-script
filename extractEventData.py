@@ -6,7 +6,7 @@ import soundfile as sf
 import xml.etree.ElementTree as ET
 
 
-path = "/media/shivin/b5706d8c-1df3-4a67-8102-2c3af3458720/sanchit/MIVIA_DB4_dist/training"
+path = "/path/to/MIVIA_DB4_dist/audio/folder"
 path = Path(path)
 files = glob( os.path.join(path,'*.xml'))
 
