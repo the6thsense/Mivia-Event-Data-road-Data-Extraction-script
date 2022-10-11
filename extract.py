@@ -6,8 +6,6 @@ import soundfile as sf
 import xml.etree.ElementTree as ET
 
 
-
-
 def breakfile(file, tree):
     
     
@@ -31,10 +29,6 @@ def breakfile(file, tree):
                 
             elif child.tag == "CLASS_ID":
                 class_ = int(child.text)
-
-            elif child.tag == "CLASS_NAME":
-                tag_ = child.text
-                tag_ = tag_.split('/')[0]
                 
             elif child.tag == "STARTSECOND":
                 s_ = float(child.text)
@@ -62,14 +56,12 @@ def breakfile(file, tree):
                 x.mkdir( exist_ok = True )
                 s = int(np.floor(s_))
                 e = int(np.ceil(e_))
-#                 print(s)
                 sf.write(x/outfile,   aud[ s*sr:e*sr], sr)
                 
             
-#                 doc.write( "{}\t{}\n".format(outfile, int(class_)+3) )
                 
+
 with concurrent.futures.ThreadPoolExecutor() as TPE:
- 
     path = "/path/to/MIVIA_ROAD_DB1/"
     path = Path(path)
     files = glob( os.path.join(path,'*.xml'))
@@ -82,6 +74,8 @@ with concurrent.futures.ThreadPoolExecutor() as TPE:
         for audio in audios:
             TPE.submit(breakfile(audio,tree))
        
+        
+
         
 
             
